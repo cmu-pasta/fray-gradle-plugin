@@ -22,8 +22,8 @@ tasks.test {
 }
 
 gradlePlugin {
-  website = "https://github.com/cmu-pasta/fray"
-  vcsUrl = "https://github.com/cmu-pasta/fray"
+  website = "https://github.com/cmu-pasta/fray-gradle-plugin"
+  vcsUrl = "https://github.com/cmu-pasta/fray-gradle-plugin"
   plugins {
     create("fray") {
       id = "cmu.pasta.fray.gradle"
