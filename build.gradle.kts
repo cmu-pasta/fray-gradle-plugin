@@ -4,6 +4,7 @@ plugins {
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.gradle.plugin-publish") version "1.2.1"
+  id("com.ncorti.ktfmt.gradle") version "0.17.0"
 }
 
 group = "cmu.pasta.fray.gradle"
