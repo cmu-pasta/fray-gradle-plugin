@@ -5,5 +5,5 @@ object Commons {
   val JDK_BASE = "$DIR_BASE/fray-java"
   val JAVA_PATH = "$JDK_BASE/bin/java"
   val JVMTI_BASE = "$DIR_BASE/fray-jvmti"
-  val FRAY_VERSION = "1.0"
+  val TEST_WORK_DIR = "$DIR_BASE/fray-report"
 }
