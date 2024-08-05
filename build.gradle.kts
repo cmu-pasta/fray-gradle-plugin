@@ -7,7 +7,7 @@ plugins {
   id("com.ncorti.ktfmt.gradle") version "0.17.0"
 }
 
-group = "cmu.pasta.fray.gradle"
+group = "org.pastalab.fray.gradle"
 version = "1.0"
 
 repositories {
@@ -27,9 +27,9 @@ gradlePlugin {
   vcsUrl = "https://github.com/cmu-pasta/fray-gradle-plugin"
   plugins {
     create("fray") {
-      id = "cmu.pasta.fray.gradle"
+      id = "org.pastalab.fray.gradle"
       displayName = "Fray Gradle Plugin"
-      implementationClass = "cmu.pasta.fray.gradle.FrayPlugin"
+      implementationClass = "org.pastalab.fray.gradle.FrayPlugin"
       description = "Fray Gradle Plugin"
       tags = listOf("fray", "testing", "concurrency")
     }

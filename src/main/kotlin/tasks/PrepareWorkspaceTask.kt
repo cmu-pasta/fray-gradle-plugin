@@ -1,6 +1,6 @@
-package cmu.pasta.fray.gradle.tasks
+package org.pastalab.fray.gradle.tasks
 
-import cmu.pasta.fray.gradle.Commons
+import org.pastalab.fray.gradle.Commons
 import java.io.File
 import org.gradle.api.DefaultTask
 import org.gradle.api.artifacts.Dependency
@@ -35,7 +35,7 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
                 "jlink",
                 "-J-javaagent:$jdkJar",
                 "-J--module-path=$dependencies",
-                "-J--add-modules=cmu.pasta.fray.jdk",
+                "-J--add-modules=org.pastalab.fray.jdk",
                 "-J--class-path=$dependencies",
                 "--output=$jdkPath",
                 "--add-modules=ALL-MODULE-PATH",

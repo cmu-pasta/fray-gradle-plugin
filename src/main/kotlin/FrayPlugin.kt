@@ -1,6 +1,6 @@
-package cmu.pasta.fray.gradle
+package org.pastalab.fray.gradle
 
-import cmu.pasta.fray.gradle.tasks.PrepareWorkspaceTask
+import org.pastalab.fray.gradle.tasks.PrepareWorkspaceTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
@@ -15,19 +15,19 @@ class FrayPlugin : Plugin<Project> {
       val frayVersion = extension.version
       val os = DefaultNativePlatform.getCurrentOperatingSystem().toFamilyName()
       val arch = DefaultNativePlatform.getCurrentArchitecture().name
-      val frayJdk = target.dependencies.add("testImplementation", "cmu.pasta.fray:jdk:$frayVersion")
+      val frayJdk = target.dependencies.add("testImplementation", "org.pastalab.fray:jdk:$frayVersion")
       val frayJvmti =
           target.dependencies.add(
-              "testImplementation", "cmu.pasta.fray:jvmti:$frayVersion:$os-$arch")
+              "testImplementation", "org.pastalab.fray:jvmti:$frayVersion:$os-$arch")
       val frayInstrumentation =
           target.dependencies.add(
-              "testImplementation", "cmu.pasta.fray:instrumentation:$frayVersion")
+              "testImplementation", "org.pastalab.fray:instrumentation:$frayVersion")
       val javaPath = "${target.rootProject.layout.buildDirectory.get().asFile}/${Commons.JAVA_PATH}"
       val jvmtiPath =
           "${target.rootProject.layout.buildDirectory.get().asFile}/${Commons.JVMTI_BASE}"
-      target.dependencies.add("testImplementation", "cmu.pasta.fray:core:$frayVersion")
-      target.dependencies.add("testImplementation", "cmu.pasta.fray:junit:$frayVersion")
-      target.dependencies.add("testCompileOnly", "cmu.pasta.fray:runtime:$frayVersion")
+      target.dependencies.add("testImplementation", "org.pastalab.fray:core:$frayVersion")
+      target.dependencies.add("testImplementation", "org.pastalab.fray:junit:$frayVersion")
+      target.dependencies.add("testCompileOnly", "org.pastalab.fray:runtime:$frayVersion")
       val jlink =
           target.tasks.register("jlink", PrepareWorkspaceTask::class.java).get().apply {
             this.frayJdk.set(frayJdk)
