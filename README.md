@@ -4,7 +4,7 @@ This plugin helps you to use Fray in your Gradle project.
 
 ```kotlin   
 plugins {
-    id("cmu.pasta.fray.gradle") version "1.0"
+    id("cmu.pasta.fray.gradle") version "0.1"
 }
 ```
 
