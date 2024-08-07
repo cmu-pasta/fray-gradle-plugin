@@ -30,8 +30,21 @@ gradlePlugin {
       id = "org.pastalab.fray.gradle"
       displayName = "Fray Gradle Plugin"
       implementationClass = "org.pastalab.fray.gradle.FrayPlugin"
-      description = "Fray Gradle Plugin"
+      description = "Fray gradle plugin to test concurrency programs."
       tags = listOf("fray", "testing", "concurrency")
+    }
+  }
+}
+
+publishing {
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/cmu-pasta/fray")
+      credentials {
+        username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+        password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+      }
     }
   }
 }

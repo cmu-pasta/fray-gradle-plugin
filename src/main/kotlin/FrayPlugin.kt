@@ -1,10 +1,10 @@
 package org.pastalab.fray.gradle
 
-import org.pastalab.fray.gradle.tasks.PrepareWorkspaceTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import org.pastalab.fray.gradle.tasks.PrepareWorkspaceTask
 
 class FrayPlugin : Plugin<Project> {
   override fun apply(target: Project) {
@@ -15,7 +15,8 @@ class FrayPlugin : Plugin<Project> {
       val frayVersion = extension.version
       val os = DefaultNativePlatform.getCurrentOperatingSystem().toFamilyName()
       val arch = DefaultNativePlatform.getCurrentArchitecture().name
-      val frayJdk = target.dependencies.add("testImplementation", "org.pastalab.fray:jdk:$frayVersion")
+      val frayJdk =
+          target.dependencies.add("testImplementation", "org.pastalab.fray:jdk:$frayVersion")
       val frayJvmti =
           target.dependencies.add(
               "testImplementation", "org.pastalab.fray:jvmti:$frayVersion:$os-$arch")
