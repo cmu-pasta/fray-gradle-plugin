@@ -19,7 +19,7 @@ class FrayPlugin : Plugin<Project> {
           target.dependencies.add("testImplementation", "org.pastalab.fray:jdk:$frayVersion")
       val frayJvmti =
           target.dependencies.add(
-              "testImplementation", "org.pastalab.fray:jvmti:$frayVersion:$os-$arch")
+              "testImplementation", "org.pastalab.fray:jvmti-$os-$arch:$frayVersion")
       val frayInstrumentation =
           target.dependencies.add(
               "testImplementation", "org.pastalab.fray:instrumentation:$frayVersion")
