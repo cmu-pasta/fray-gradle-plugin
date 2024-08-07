@@ -26,3 +26,19 @@ To run all Fray tests, use the following command:
 ```shell
 ./gradlew frayTest
 ```
+
+
+## (Optional) Configuration
+
+```kotlin
+fray {
+    // You may specifiy the version of fray you would like to use. 
+    version = "0.1"
+}
+
+tasks.test {
+  // You may also make the test task depend on the frayTest task
+  // `./gradlew test` will run the fray tests 
+  dependsOn("frayTest")
+}
+```
