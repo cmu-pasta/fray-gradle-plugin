@@ -35,7 +35,7 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
                 "jlink",
                 "-J-javaagent:$jdkJar",
                 "-J--module-path=$dependencies",
-                "-J--add-modules=org.pastalab.fray.jdk",
+                "-J--add-modules=org.pastalab.fray.instrumentation.jdk",
                 "-J--class-path=$dependencies",
                 "--output=$jdkPath",
                 "--add-modules=ALL-MODULE-PATH",
