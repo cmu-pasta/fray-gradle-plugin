@@ -16,7 +16,8 @@ class FrayPlugin : Plugin<Project> {
       val os = DefaultNativePlatform.getCurrentOperatingSystem().toFamilyName()
       val arch = DefaultNativePlatform.getCurrentArchitecture().name
       val frayJdk =
-          target.dependencies.add("testImplementation", "org.pastalab.fray.instrumentation:jdk:$frayVersion")
+          target.dependencies.add(
+              "testImplementation", "org.pastalab.fray.instrumentation:jdk:$frayVersion")
       val frayJvmti =
           target.dependencies.add(
               "testImplementation", "org.pastalab.fray:jvmti-$os-$arch:$frayVersion")
@@ -33,6 +34,7 @@ class FrayPlugin : Plugin<Project> {
           target.tasks.register("jlink", PrepareWorkspaceTask::class.java).get().apply {
             this.frayJdk.set(frayJdk)
             this.frayJvmti.set(frayJvmti)
+            this.frayVersion.set(frayVersion)
           }
       target.tasks.register("frayTest", Test::class.java) {
         it.useJUnitPlatform { it.includeEngines("fray") }

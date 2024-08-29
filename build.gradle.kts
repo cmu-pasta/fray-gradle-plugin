@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.pastalab.fray.gradle"
-version = "0.1.3"
+version = "0.1.4-SNAPSHOT"
 
 repositories {
   mavenCentral()

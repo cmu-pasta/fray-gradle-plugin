@@ -15,9 +15,13 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
 
   @get:Input abstract val frayJvmti: Property<Dependency>
 
+  @get:Input abstract val frayVersion: Property<String>
+
   @Internal
   val jdkPath =
       File("${project.rootProject.layout.buildDirectory.get().asFile}/${Commons.JDK_BASE}")
+
+  @Internal val jdkVersionPath = File("${jdkPath}/fray-version")
 
   @Internal
   val jvmtiPath =
@@ -25,7 +29,8 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
 
   @TaskAction
   fun run() {
-    if (!jdkPath.exists()) {
+    if (readJDKFrayVersion() != frayVersion.get()) {
+      jdkPath.deleteRecursively()
       project.exec {
         val jdkJar = project.configurations.detachedConfiguration(frayJdk.get()).resolve().first()
         val dependencies =
@@ -42,6 +47,7 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
                 "--fray-instrumentation")
         println(command.joinToString(" "))
         it.commandLine(command)
+        jdkVersionPath.writeText(frayVersion.get())
       }
     }
     if (!jvmtiPath.exists()) {
@@ -52,6 +58,14 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
         it.from(project.zipTree(jvmtiJar))
         it.into(jvmtiPath)
       }
+    }
+  }
+
+  private fun readJDKFrayVersion(): String {
+    return if (jdkVersionPath.exists()) {
+      jdkVersionPath.readText()
+    } else {
+      ""
     }
   }
 
