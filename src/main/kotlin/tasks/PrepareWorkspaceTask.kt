@@ -8,6 +8,11 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
 import org.pastalab.fray.gradle.Commons
+import kotlin.io.path.Path
+import kotlin.io.path.createFile
+import kotlin.io.path.exists
+import kotlin.io.path.readText
+import kotlin.io.path.writeText
 
 abstract class PrepareWorkspaceTask : DefaultTask() {
 
@@ -21,7 +26,7 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
   val jdkPath =
       File("${project.rootProject.layout.buildDirectory.get().asFile}/${Commons.JDK_BASE}")
 
-  @Internal val jdkVersionPath = File("${jdkPath}/fray-version")
+  @Internal val jdkVersionPath = Path("${jdkPath}/fray-version")
 
   @Internal
   val jvmtiPath =
@@ -47,8 +52,9 @@ abstract class PrepareWorkspaceTask : DefaultTask() {
                 "--fray-instrumentation")
         println(command.joinToString(" "))
         it.commandLine(command)
-        jdkVersionPath.writeText(frayVersion.get())
       }
+      jdkVersionPath.createFile()
+      jdkVersionPath.writeText(frayVersion.get())
     }
     if (!jvmtiPath.exists()) {
       jvmtiPath.mkdirs()
